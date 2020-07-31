@@ -38,8 +38,16 @@ public class DemoApplication {
 }
 ```
 ## 第四步 在代码中获取登录用户信息
+``` java
+    @GetMapping("test1/index1")
+    public String index1(HttpServletRequest request){
         String token =request.getParameter("token");
         System.out.println("token : "+token);
         Assertion assertion = (Assertion) request.getSession().getAttribute(AbstractCasFilter.CONST_CAS_ASSERTION);
+
         String username=     assertion.getPrincipal().getName();
-        
+        System.out.println(username);
+
+        return "test index cas拦截正常,登录账号:"+username;
+    }
+    ```
