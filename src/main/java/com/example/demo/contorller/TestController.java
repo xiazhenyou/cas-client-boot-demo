@@ -27,7 +27,7 @@ public class TestController {
         String username=     assertion.getPrincipal().getName();
         System.out.println(username);
 
-        return "haha";
+        return "test1 index cas拦截正常,登录账号:"+username;
     }
 
     @GetMapping("test1/index1")
@@ -39,7 +39,7 @@ public class TestController {
         String username=     assertion.getPrincipal().getName();
         System.out.println(username);
 
-        return "haha";
+        return "test index cas拦截正常,登录账号:"+username;
     }
 
     /**
@@ -56,6 +56,6 @@ public class TestController {
 //        String username=     assertion.getPrincipal().getName();
 //        System.out.println(username);
 
-        return "haha";
+        return "cas 未拦截";
     }
 }
