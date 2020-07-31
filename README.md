@@ -26,7 +26,7 @@ cas:
     - /test1/index1
 ```
 ## 第三部 在application启动类上加上 @EnableCasClient 注解
-
+```java
 @SpringBootApplication
 @EnableCasClient
 public class DemoApplication {
@@ -36,6 +36,7 @@ public class DemoApplication {
     }
 
 }
+```
 ## 第四步 在代码中获取登录用户信息
         String token =request.getParameter("token");
         System.out.println("token : "+token);
