@@ -25,6 +25,21 @@ cas:
     - /test1/index
     - /test1/index1
 ```
+扩展配置项
+
+cas.authentication-url-patterns
+cas.validation-url-patterns
+cas.request-wrapper-url-patterns
+cas.assertion-thread-local-url-patterns
+cas.gateway
+cas.use-session
+cas.redirect-after-validation
+cas.allowed-proxy-chains
+cas.proxy-callback-url
+cas.proxy-receptor-url
+cas.accept-any-proxy
+server.context-parameters.renew
+
 ## 第三部 在application启动类上加上 @EnableCasClient 注解
 ```java
 @SpringBootApplication
