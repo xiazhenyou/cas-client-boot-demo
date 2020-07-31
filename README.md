@@ -8,7 +8,7 @@ demo分别写了三个请求:拦截请求 test1/index,test1/index1 以及不拦�
             <version>2.3.0-GA</version>
       </dependency>
 ## 第二部，配置spring boot 配置文件
-server:
+``server:
   port: 8989
 cas:
   # cas服务端地址
@@ -23,6 +23,7 @@ cas:
   authentication-url-patterns:
     - /test1/index
     - /test1/index1
+    ``
 ## 第三部 在application启动类上加上 @EnableCasClient 注解
 ## 第四步 在代码中获取登录用户信息
         String token =request.getParameter("token");
