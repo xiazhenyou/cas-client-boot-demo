@@ -63,6 +63,12 @@ public class DemoApplication {
         String username=     assertion.getPrincipal().getName();
         System.out.println(username);
 
+        AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
+        String username=     principal.getName();
+        System.out.println(username);
+        //获取其他用户属性，需要在makey配置cas适配器org.maxkey.authz.cas.endpoint.adapter.CasDefaultAdapter
+        System.out.println(principal.getAttributes().toString());
+
         return "test index cas拦截正常,登录账号:"+username;
     }
 ```

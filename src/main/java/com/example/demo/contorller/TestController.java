@@ -1,5 +1,7 @@
 package com.example.demo.contorller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.util.AbstractCasFilter;
 import org.jasig.cas.client.validation.Assertion;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +22,11 @@ public class TestController {
 
     @GetMapping("test1/index")
     public String index(HttpServletRequest request){
-        String token =request.getParameter("token");
-        System.out.println("token : "+token);
-        Assertion assertion = (Assertion) request.getSession().getAttribute(AbstractCasFilter.CONST_CAS_ASSERTION);
-
-        String username=     assertion.getPrincipal().getName();
+        AttributePrincipal principal = (AttributePrincipal)request.getUserPrincipal();
+        String username=     principal.getName();
         System.out.println(username);
-
+        //获取其他用户属性
+        System.out.println(principal.getAttributes().toString());
         return "test1 index cas拦截正常,登录账号:"+username;
     }
 
@@ -49,12 +49,12 @@ public class TestController {
      */
     @GetMapping("test1/index2")
     public String index2(HttpServletRequest request){
-//        String token =request.getParameter("token");
-//        System.out.println("token : "+token);
-//        Assertion assertion = (Assertion) request.getSession().getAttribute(AbstractCasFilter.CONST_CAS_ASSERTION);
+        String token =request.getParameter("token");
+        System.out.println("token : "+token);
+        Assertion assertion = (Assertion) request.getSession().getAttribute(AbstractCasFilter.CONST_CAS_ASSERTION);
 //
-//        String username=     assertion.getPrincipal().getName();
-//        System.out.println(username);
+        String username=     assertion.getPrincipal().getName();
+        System.out.println(username);
 
         return "cas 未拦截";
     }
