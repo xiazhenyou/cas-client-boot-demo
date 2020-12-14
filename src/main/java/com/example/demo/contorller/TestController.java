@@ -3,11 +3,17 @@ package com.example.demo.contorller;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.util.AbstractCasFilter;
+import org.jasig.cas.client.util.CommonUtils;
+import org.jasig.cas.client.util.XmlUtils;
 import org.jasig.cas.client.validation.Assertion;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @ClassName TestController
@@ -57,5 +63,19 @@ public class TestController {
         System.out.println(username);
 
         return "cas 未拦截";
+    }
+
+    /**
+     * 不通过过滤器退出时，解析nameId,清空自己前端对应的用户token
+     * @param request
+     * @return
+     */
+    @PostMapping("test1/logout")
+    public String logout(HttpServletRequest request){
+        String logoutMessage = CommonUtils.safeGetParameter(request, "logoutRequest", Arrays.asList("logoutRequest"));
+        //用户主键
+        String nameId= XmlUtils.getTextForElement(logoutMessage,"NameID");
+        System.out.println(nameId);
+        return "用户ID："+nameId;
     }
 }

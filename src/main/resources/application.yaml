@@ -1,11 +1,17 @@
 server:
   port: 8989
 cas:
-  server-url-prefix: http://sso.maxkey.top/maxkey/authz/cas/
-  server-login-url: http://sso.maxkey.top/maxkey/authz/cas/login
+  server-url-prefix: http://localhost:18080/sso/authz/cas/
+  server-login-url: http://localhost:18080/sso/authz/cas/login
   client-host-url: http://localhost:8989/
   validation-type: cas
 #  拦截的URL地址
   authentication-url-patterns:
     - /test1/index
     - /test1/index1
+udf:
+  #验证白名单
+  ignorePattern: test1/index2
+  #自定义验证类型UrlPatternMatcherStrategy
+  ignoreUrlPatternType:
+casClientLogoutUrl: http://localhost:18080/sso/logout?service=http://localhost:8989/test1/index2

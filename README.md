@@ -1,6 +1,8 @@
 # cas-client-boot-demo
 基于spring boot配置cas客户端
 demo分别写了三个请求:拦截请求 test1/index,test1/index1 以及不拦截请求test1/index2,
+CASAutoConfig中，如果把Configuration注解的注释去掉，即可直接通过过滤器方式完成统一登录和注销。
+若基于前后端分离，前端建议在登录时把用户和token自己维护好，退出接口解析cas报文获取退出的具体用户。参考test1/logout
 ## 第一步，引入cas 客户端所需包
       <dependency>
             <groupId>net.unicon.cas</groupId>
